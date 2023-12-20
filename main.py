@@ -1,4 +1,5 @@
 import requests
+import time
 
 url = 'https://api.discord.gx.games/v1/direct-fulfillment'
 headers = {
@@ -27,15 +28,16 @@ print(f'''
 |  \| | | |    | |  | |__) | |  | | | |__) | |  | | (___    | |   
 | . ` | | |    | |  |  _  /| |  | | |  ___/| |  | |\___ \   | |   
 | |\  |_| |_   | |  | | \ \| |__| | | |    | |__| |____) |  | |   
-|_| \_|_____|  |_|  |_|  \_\\____/  |_|     \____/|_____/   |_|                
+|_| \_|_____|  |_|  |_|  \_\\______/ |_|     \____/|_____/   |_|                
 By: MessyToilet''')
 input("\n( Enter ) to begin...")
 
-for i in range(1, 100):
-    file   = 'nitro_posts{i}.txt'
+for i in range(15, 100):
+    file   = f'nitro_posts{i}.txt'
     runs = 48
     collection = []
     for _ in range(runs):
+        time.sleep(1)
         response = requests.post(url, headers=headers, json=data)
         print(f'Status: {response.status_code}\nResponse: {response.text}\n')
 
@@ -44,9 +46,13 @@ for i in range(1, 100):
 
         print(f'Stuffing: {token_value}\n')
         collection.append(preTxt + token_value)
-
+    
     with open(file, 'w') as FILE:
         FILE.write(f'Keys: {runs}\n')
         for token in collection:
             FILE.write(token + '\n\n')
+
+    print(f'\n\n------ ! (48) NITRO KEYS written ! ------\n\n')
+    time.sleep(5)
+    
 print(f'\n\n------ ! (48 x 100) NITRO KEYS GENERATED ! ------')
